@@ -2,10 +2,147 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Кіберспортивний кінотеатр і трекер ігрових сесій</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кіберспортивний кінотеатр і трекер ігрових сесій — Візитка проєкту</title>
+  <meta name="description" content="Річний учнівський проєкт учня 10 класу: кіберспортивний кінотеатр та трекер ігрових сесій у форматі гри, бота, сайту та застосунку.">
+  <style>
+    :root {
+      --bg: #0D1117;
+      --fg: #F0F6FC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+
+    main {
+      max-width: 880px;
+      width: 100%;
+    }
+
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--fg);
+      padding-bottom: 2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--fg);
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 4vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      max-width: 72ch;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      border: 1px solid var(--fg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .card:hover {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
+
+    .card-number {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      opacity: 0.85;
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Моя тема:Кіберспортивний кінотеатр і трекер ігрових сесій </h1>
-  <p>Мій особистий проєкт на стику ігор, кіно та програмування. Роблю гру-квест на Python, пишу бота для трекінгу нашої командної статистики й створюю атмосферний сайт для друзів Моя тема: «Кіберспортивний кінотеатр і трекер ігрових сесій» Чому моя: Поєднує мої 3 головні інтереси — відеоігри, перегляд фільмів та спільний час із друзями, дозволяючи створити практичний проєкт для нашої компанії. Гра: Текстовий ретро-квест на Python із сюжетними виборами про пригоди команди друзів у кіберпанк-всесвіті. Бот: Discord-бот на Python для обліку перемог , поразок та розрахунку вінрейту у спільних іграх. Сайт: Вебсторінка з кінематографічним дизайном для відображення таблиці лідерів та оглядів на улюблені ігри й фільми. Застосунок: Консольний або міні-десктопний трекер для планування кіновечорів та відстеження ігрових досягнень. Що може бути складно: Збереження та обробка даних користувачів у JSON-файлах для бота, а також побудова логіки команд і розрахунку статистики.</p>
+  <main>
+    <header>
+      <span class="tag">Річний проєкт · 10 клас</span>
+      <h1>Кіберспортивний кінотеатр і трекер ігрових сесій</h1>
+      <p class="description">
+        Цей річний проєкт об’єднує спільний перегляд кіберспортивних трансляцій та облік власної ігрової активності. Платформа покликана структурувати час, проведений у кіберспортивному середовищі, та зробити аналіз ігрових сесій зручним і наочним. Робота над темою охоплює створення чотирьох взаємопов’язаних цифрових рішень.
+      </p>
+    </header>
+
+    <section class="grid" aria-label="Складові проєкту">
+      <article class="card">
+        <span class="card-number">01</span>
+        <div>
+          <h2>Гра</h2>
+          <p>Інтерактивний ігровий модуль для залучення учасників спільноти.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="card-number">02</span>
+        <div>
+          <h2>Бот</h2>
+          <p>Автоматизований помічник для сповіщень про трансляції та фіксації сесій.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="card-number">03</span>
+        <div>
+          <h2>Сайт</h2>
+          <p>Вебпростір для перегляду ефірів, розкладу матчів та статистики.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="card-number">04</span>
+        <div>
+          <h2>Застосунок</h2>
+          <p>Мобільний або десктопний інструмент для контролю власного ігрового часу.</p>
+        </div>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
