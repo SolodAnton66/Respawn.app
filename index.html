@@ -7,8 +7,8 @@
   <meta name="description" content="Річний учнівський проєкт учня 10 класу: кіберспортивний кінотеатр та трекер ігрових сесій у форматі гри, бота, сайту та застосунку.">
   <style>
     :root {
-      --bg: #0D1117;
-      --fg: #F0F6FC;
+      --bg: #08080A;
+      --fg: #F5F5F7;
     }
 
     * {
@@ -27,66 +27,215 @@
       align-items: center;
       justify-content: center;
       padding: 2rem 1.25rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Чорні діри та гравітаційні орбіти */
+    .cosmos {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .black-hole {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 245, 247, 0.14);
+      background: radial-gradient(circle, var(--bg) 38%, rgba(245, 245, 247, 0.08) 54%, transparent 72%);
+      animation: orbitSpin 50s linear infinite;
+      transition: transform 0.2s ease-out;
+    }
+
+    .black-hole::before,
+    .black-hole::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .black-hole::before {
+      inset: 14%;
+      border: 1px dashed rgba(245, 245, 247, 0.16);
+      animation: orbitSpin 28s linear infinite reverse;
+    }
+
+    .black-hole::after {
+      inset: 34%;
+      background-color: var(--bg);
+      border: 1.5px solid rgba(245, 245, 247, 0.45);
+      box-shadow: 0 0 35px rgba(245, 245, 247, 0.12), inset 0 0 20px rgba(245, 245, 247, 0.08);
+    }
+
+    .bh-1 {
+      width: 520px;
+      height: 520px;
+      top: -160px;
+      right: -130px;
+    }
+
+    .bh-2 {
+      width: 360px;
+      height: 360px;
+      bottom: -120px;
+      left: -100px;
+      animation-duration: 65s;
+    }
+
+    /* Декоративні точки-частинки, що обертаються */
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background-color: var(--fg);
+      border-radius: 50%;
+      opacity: 0.45;
+    }
+
+    .p1 { top: 20%; left: 12%; }
+    .p2 { top: 75%; right: 18%; }
+    .p3 { top: 45%; left: 6%; }
+    .p4 { bottom: 18%; right: 35%; }
+
+    @keyframes orbitSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     main {
-      max-width: 880px;
+      max-width: 920px;
       width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
     header {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--fg);
+      margin-bottom: 2.25rem;
+      border-bottom: 1px solid rgba(245, 245, 247, 0.35);
       padding-bottom: 2rem;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
     .tag {
       display: inline-block;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       border: 1px solid var(--fg);
-      padding: 0.25rem 0.75rem;
-      margin-bottom: 1.25rem;
+      padding: 0.3rem 0.8rem;
+      background-color: var(--bg);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .session-tracker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      border: 1px solid var(--fg);
+      padding: 0.3rem 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--fg);
+      animation: blink 1.4s infinite;
+    }
+
+    .btn-action {
+      font-family: inherit;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background-color: var(--bg);
+      color: var(--fg);
+      border: 1px solid var(--fg);
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-action:hover,
+    .btn-action:focus-visible {
+      background-color: var(--fg);
+      color: var(--bg);
+      outline: none;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.15; }
     }
 
     h1 {
-      font-size: clamp(1.85rem, 4vw, 2.75rem);
+      font-size: clamp(1.85rem, 4.2vw, 2.85rem);
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.15;
       margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
     }
 
     .description {
-      font-size: 1.1rem;
-      max-width: 72ch;
+      font-size: 1.05rem;
+      max-width: 74ch;
+      opacity: 0.92;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .card {
+      background-color: var(--bg);
       border: 1px solid var(--fg);
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+      position: relative;
     }
 
-    .card:hover {
+    .card:hover,
+    .card:focus-visible,
+    .card.active {
       background-color: var(--fg);
       color: var(--bg);
+      transform: translateY(-4px);
+      outline: none;
     }
 
-    .card-number {
-      font-size: 0.85rem;
-      font-weight: 600;
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 1.5rem;
-      opacity: 0.85;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
     }
 
     .card h2 {
@@ -97,13 +246,83 @@
 
     .card p {
       font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-hint {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      opacity: 0.75;
+      text-transform: uppercase;
+    }
+
+    /* Інтерактивна панель деталей обраного модуля */
+    .detail-panel {
+      border: 1px solid var(--fg);
+      background-color: var(--bg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .detail-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 0.25rem;
+      opacity: 0.8;
+    }
+
+    /* Режим інверсії палітри */
+    body.inverted {
+      --bg: #F5F5F7;
+      --fg: #08080A;
+    }
+
+    body.inverted .black-hole {
+      border-color: rgba(8, 8, 10, 0.16);
+      background: radial-gradient(circle, var(--bg) 38%, rgba(8, 8, 10, 0.08) 54%, transparent 72%);
+    }
+
+    body.inverted .black-hole::before {
+      border-color: rgba(8, 8, 10, 0.2);
+    }
+
+    body.inverted .black-hole::after {
+      border-color: rgba(8, 8, 10, 0.45);
+      box-shadow: 0 0 35px rgba(8, 8, 10, 0.1);
     }
   </style>
 </head>
 <body>
+  <div class="cosmos" aria-hidden="true">
+    <div class="black-hole bh-1" id="bh1"></div>
+    <div class="black-hole bh-2" id="bh2"></div>
+    <span class="particle p1"></span>
+    <span class="particle p2"></span>
+    <span class="particle p3"></span>
+    <span class="particle p4"></span>
+  </div>
+
   <main>
     <header>
-      <span class="tag">Річний проєкт · 10 клас</span>
+      <div class="top-bar">
+        <span class="tag">Річний проєкт · 10 клас</span>
+        <div class="controls">
+          <div class="session-tracker" aria-label="Таймер активної сесії">
+            <span class="pulse-dot"></span>
+            <span>СЕСІЯ: <span id="timer">00:00</span></span>
+          </div>
+          <button type="button" class="btn-action" id="themeBtn" aria-label="Змінити контрастну тему">Інверсія</button>
+        </div>
+      </div>
+
       <h1>Кіберспортивний кінотеатр і трекер ігрових сесій</h1>
       <p class="description">
         Цей річний проєкт об’єднує спільний перегляд кіберспортивних трансляцій та облік власної ігрової активності. Платформа покликана структурувати час, проведений у кіберспортивному середовищі, та зробити аналіз ігрових сесій зручним і наочним. Робота над темою охоплює створення чотирьох взаємопов’язаних цифрових рішень.
@@ -111,38 +330,113 @@
     </header>
 
     <section class="grid" aria-label="Складові проєкту">
-      <article class="card">
-        <span class="card-number">01</span>
+      <article class="card active" tabindex="0" data-title="Гра" data-info="Інтерактивний формат для взаємодії глядачів під час перегляду турнірів та змагань.">
         <div>
+          <div class="card-top">
+            <span>01</span>
+            <span>[МОДУЛЬ]</span>
+          </div>
           <h2>Гра</h2>
           <p>Інтерактивний ігровий модуль для залучення учасників спільноти.</p>
         </div>
+        <span class="card-hint">Натисніть для огляду →</span>
       </article>
 
-      <article class="card">
-        <span class="card-number">02</span>
+      <article class="card" tabindex="0" data-title="Бот" data-info="Автоматичне нагадування про старт матчів і швидкий запис тривалості ігрових сесій.">
         <div>
+          <div class="card-top">
+            <span>02</span>
+            <span>[МОДУЛЬ]</span>
+          </div>
           <h2>Бот</h2>
           <p>Автоматизований помічник для сповіщень про трансляції та фіксації сесій.</p>
         </div>
+        <span class="card-hint">Натисніть для огляду →</span>
       </article>
 
-      <article class="card">
-        <span class="card-number">03</span>
+      <article class="card" tabindex="0" data-title="Сайт" data-info="Центральний вебхаб із віртуальними кінозалами, розкладом ефірів та особистою статистикою.">
         <div>
+          <div class="card-top">
+            <span>03</span>
+            <span>[МОДУЛЬ]</span>
+          </div>
           <h2>Сайт</h2>
           <p>Вебпростір для перегляду ефірів, розкладу матчів та статистики.</p>
         </div>
+        <span class="card-hint">Натисніть для огляду →</span>
       </article>
 
-      <article class="card">
-        <span class="card-number">04</span>
+      <article class="card" tabindex="0" data-title="Застосунок" data-info="Зручний трекер для щоденного моніторингу часу у грі та перерв між сесіями.">
         <div>
+          <div class="card-top">
+            <span>04</span>
+            <span>[МОДУЛЬ]</span>
+          </div>
           <h2>Застосунок</h2>
           <p>Мобільний або десктопний інструмент для контролю власного ігрового часу.</p>
         </div>
+        <span class="card-hint">Натисніть для огляду →</span>
       </article>
     </section>
+
+    <aside class="detail-panel" aria-live="polite">
+      <div>
+        <span class="detail-label" id="detailTitle">Обраний напрям: Гра</span>
+        <p id="detailText">Інтерактивний формат для взаємодії глядачів під час перегляду турнірів та змагань.</p>
+      </div>
+    </aside>
   </main>
+
+  <script>
+    // Живий таймер сесії
+    let seconds = 0;
+    const timerEl = document.getElementById('timer');
+    setInterval(() => {
+      seconds++;
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      timerEl.textContent = `${mins}:${secs}`;
+    }, 1000);
+
+    // Перемикання карток та оновлення панелі огляду
+    const cards = document.querySelectorAll('.card');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailText = document.getElementById('detailText');
+
+    function selectCard(card) {
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      detailTitle.textContent = `Обраний напрям: ${card.dataset.title}`;
+      detailText.textContent = card.dataset.info;
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => selectCard(card));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectCard(card);
+        }
+      });
+    });
+
+    // Інверсія двоколірної палітри
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('inverted');
+    });
+
+    // Легкий гравітаційний паралакс чорних дір при русі миші
+    const bh1 = document.getElementById('bh1');
+    const bh2 = document.getElementById('bh2');
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      bh1.style.marginRight = `${x}px`;
+      bh1.style.marginTop = `${y}px`;
+      bh2.style.marginLeft = `${-x}px`;
+      bh2.style.marginBottom = `${-y}px`;
+    });
+  </script>
 </body>
 </html>
